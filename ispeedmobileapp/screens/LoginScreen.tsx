@@ -7,48 +7,23 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {gql, useQuery, useMutation} from '@apollo/client';
-const LOGIN_QUERY = gql`
-  mutation login($username: String!, $password: String!) {
-    login(username: $username, password: $password) {
-      id
-      token
-    }
-  }
-`;
+import AuthContext from '../utils/authcontext';
 
-const GET_USERS = gql`
-  query {
-    getUsers {
-      id
-      username
-      email
-      lastname
-      firstname
-    }
-  }
-`;
+import {useMutation} from '@apollo/client';
+import { LoginDocument, useLoginMutation } from '../generated/graphql';
 
-const App = () => {
+const LoginScreen = (props) => {
+  const {signIn} = React.useContext(AuthContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [login] = useMutation(LOGIN_QUERY);
-  const storeData = async (value) => {
-    try {
-      await AsyncStorage.setItem('@login_key', value);
-    } catch (e) {
-      // saving error
-      console.log('error during save in localstorage')
-    }
-  };
+  const [login] = useLoginMutation()
+
   const handleLogin = async () => {
     try {
       const res = await login({
-        variables: {username, password},
+        variables: {username,password},
       });
-      console.log(res);
-      storeData(res);
+      signIn(res.data.login.token);
     } catch (error) {
       console.log(error);
     }
@@ -74,13 +49,21 @@ const App = () => {
         />
       </View>
       <TouchableOpacity>
-        <Text style={styles.forgot}>Forgot Password?</Text>
+        <Text
+          style={styles.forgot}
+          onPress={() => props.navigation.push('Forgot')}>
+          Forgot Password?
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.loginBtn} onPress={handleLogin}>
         <Text style={styles.loginText}>LOGIN</Text>
       </TouchableOpacity>
       <TouchableOpacity>
-        <Text style={styles.loginText}>Signup</Text>
+        <Text
+          style={styles.loginText}
+          onPress={() => props.navigation.push('SignUp')}>
+          Signup
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -131,4 +114,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default LoginScreen;

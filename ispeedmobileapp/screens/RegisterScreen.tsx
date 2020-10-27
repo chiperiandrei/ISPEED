@@ -8,33 +8,8 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
+import {useRegisterMutation} from '../generated/graphql';
 import AuthContext from '../utils/authcontext';
-
-import {gql, useMutation} from '@apollo/client';
-const REGISTER_QUERY = gql`
-  mutation register(
-    $username: String!
-    $password: String!
-    $confirmPassword: String!
-    $email: String!
-    $firstname: String!
-    $lastname: String!
-  ) {
-    register(
-      registerInput: {
-        username: $username
-        password: $password
-        confirmPassword: $confirmPassword
-        email: $email
-        firstname: $firstname
-        lastname: $lastname
-      }
-    ) {
-      id
-      token
-    }
-  }
-`;
 
 const RegisterScreen = () => {
   const {signUp} = React.useContext(AuthContext);
@@ -45,7 +20,7 @@ const RegisterScreen = () => {
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
 
-  const [register] = useMutation(REGISTER_QUERY);
+  const [register] = useRegisterMutation();
 
   const handleRegister = async () => {
     try {
