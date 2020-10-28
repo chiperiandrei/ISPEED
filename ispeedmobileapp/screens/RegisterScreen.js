@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  SafeAreaView,
 } from 'react-native';
 import AuthContext from '../utils/authcontext';
 
@@ -65,62 +66,64 @@ const RegisterScreen = () => {
     }
   };
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.logo}>ISPEED</Text>
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.inputText}
-          placeholder="Lastname..."
-          placeholderTextColor="#003f5c"
-          onChangeText={(text) => setLastname(text)}
-        />
-      </View>
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.inputText}
-          placeholder="Firstname..."
-          placeholderTextColor="#003f5c"
-          onChangeText={(text) => setFirstname(text)}
-        />
-      </View>
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.inputText}
-          placeholder="Email..."
-          placeholderTextColor="#003f5c"
-          onChangeText={(text) => setEmail(text)}
-        />
-      </View>
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.inputText}
-          placeholder="Username..."
-          placeholderTextColor="#003f5c"
-          onChangeText={(text) => setUsername(text)}
-        />
-      </View>
-      <View style={styles.inputView}>
-        <TextInput
-          secureTextEntry
-          style={styles.inputText}
-          placeholder="Password..."
-          placeholderTextColor="#003f5c"
-          onChangeText={(text) => setPassword(text)}
-        />
-      </View>
-      <View style={styles.inputView}>
-        <TextInput
-          secureTextEntry
-          style={styles.inputText}
-          placeholder="Confirm Password..."
-          placeholderTextColor="#003f5c"
-          onChangeText={(text) => setConfirmPassword(text)}
-        />
-      </View>
-      <TouchableOpacity style={styles.loginBtn} onPress={handleRegister}>
-        <Text style={styles.loginText}>SIGNUP</Text>
-      </TouchableOpacity>
-    </ScrollView>
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        <Text style={styles.logo}>ISPEED</Text>
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.inputText}
+            placeholder="Lastname..."
+            placeholderTextColor="#003f5c"
+            onChangeText={(text) => setLastname(text)}
+          />
+        </View>
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.inputText}
+            placeholder="Firstname..."
+            placeholderTextColor="#003f5c"
+            onChangeText={(text) => setFirstname(text)}
+          />
+        </View>
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.inputText}
+            placeholder="Email..."
+            placeholderTextColor="#003f5c"
+            onChangeText={(text) => setEmail(text)}
+          />
+        </View>
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.inputText}
+            placeholder="Username..."
+            placeholderTextColor="#003f5c"
+            onChangeText={(text) => setUsername(text)}
+          />
+        </View>
+        <View style={styles.inputView}>
+          <TextInput
+            secureTextEntry
+            style={styles.inputText}
+            placeholder="Password..."
+            placeholderTextColor="#003f5c"
+            onChangeText={(text) => setPassword(text)}
+          />
+        </View>
+        <View style={styles.inputView}>
+          <TextInput
+            secureTextEntry
+            style={styles.inputText}
+            placeholder="Confirm Password..."
+            placeholderTextColor="#003f5c"
+            onChangeText={(text) => setConfirmPassword(text)}
+          />
+        </View>
+        <TouchableOpacity style={styles.loginBtn} onPress={handleRegister}>
+          <Text style={styles.loginText}>SIGNUP</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -128,8 +131,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#003f5c',
-    alignItems: 'center',
     justifyContent: 'center',
+    paddingLeft:40
   },
   logo: {
     fontWeight: 'bold',
