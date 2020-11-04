@@ -1,13 +1,16 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { UserInputError } = require("apollo-server");
+const path = require("path");
 
 const {
   validateRegisterInput,
   validateLoginInput,
 } = require("../../util/validators");
+const checkAuth = require("../../util/check-auth");
 const { SECRET_KEY } = require("../../config");
 const User = require("../../models/User");
+const fs = require("fs");
 
 function generateToken(user) {
   return jwt.sign(
@@ -116,6 +119,19 @@ module.exports = {
         ...user._doc,
         id: user._id,
         token,
+      };
+    },
+    async uploadAvatar(_, { file }, context, info) {
+      //const user = checkAuth(context);
+      // console.log(user);
+      const { createReadStream, filename, mimetype, encoding } = await file;
+      const stream = createReadStream();
+      const pathName = path.join(__dirname, `/public/images/${filename}`);
+      console.log(pathName)
+      await stream.pipe(fs.createWriteStream(pathName));
+
+      return {
+        url: `http://localhost:5000/images/${filename}`,
       };
     },
   },

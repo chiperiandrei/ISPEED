@@ -32,12 +32,16 @@ module.exports = gql`
     firstname: String!
     lastname: String!
   }
+  type File {
+    url: String!
+  }
   type Query {
     getUsers: [Users]!
   }
   type Mutation {
     register(registerInput: RegisterInput): User!
     login(username: String!, password: String!): User!
+    uploadAvatar(file: Upload!): File!
   }
   type Subscription {
     newUser: NewUser!

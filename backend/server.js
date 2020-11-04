@@ -11,6 +11,12 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: ({ req }) => ({ req, pubsub }),
+  subscriptions: {
+    path: "/subscription",
+    onConnect: (connectionParams) => {
+      console.log(connectionParams);
+    },
+  },
 });
 
 mongoose

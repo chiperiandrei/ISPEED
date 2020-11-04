@@ -6,6 +6,7 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import AuthContext from '../utils/authcontext';
 
@@ -32,7 +33,7 @@ const LoginScreen = (props) => {
       });
       signIn(res.data.login.token);
     } catch (error) {
-      console.log(error);
+      Alert.alert('Error during login', error.message);
     }
   };
   return (
