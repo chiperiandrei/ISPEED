@@ -1,13 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, Button, Alert, Platform} from 'react-native';
 
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
+import Icon from 'react-native-vector-icons/Entypo';
+
 import {gql} from '@apollo/client';
 import {useSubscription} from '@apollo/react-hooks';
 import {
-  showNotification,
-  handleScheduleNotification,
-  handleCancel,
+  showNotification
 } from '../notifications/notification.android';
+
+import NewUserFlowScreen from '../screens/NewUserFlowScreen';
+import InternetSpeedScreen from '../screens/InternetSpeedScreen';
 
 const NEW_USER = gql`
   subscription newUser {
@@ -18,6 +23,7 @@ const NEW_USER = gql`
     }
   }
 `;
+const HomeTabs = createBottomTabNavigator();
 
 const HomeScreen = () => {
   const [counter, setCounter] = useState(0);
@@ -28,23 +34,38 @@ const HomeScreen = () => {
     setLastusernamejoined(username);
   };
   return (
-    <View>
-      {loading ? <Text>Loading</Text> : null}
-      <Text>{counter}</Text>
-
-      <Button
-        onPress={() => setCounter(counter + 1)}
-        title="Press it"
-        color="#841584"
-      />
-
+    <HomeTabs.Navigator
+      initialRouteName="InternetSpeedScreen"
+      tabBarOptions={{
+        activeTintColor: '#e91e63',
+      }}>
       {data && lastusernamejoined !== data.newUser.username
         ? handlePushNotification(
             `User ${data.newUser.firstname} joined!`,
             data.newUser.username,
           )
         : null}
-    </View>
+      <HomeTabs.Screen
+        name="InternetSpeedScreen"
+        component={InternetSpeedScreen}
+        options={{
+          headerShown: true,
+          tabBarIcon: ({size}) => (
+            <Icon name="network" size={size} color="#e91e63" />
+          ),
+        }}
+      />
+      <HomeTabs.Screen
+        name="NewUserFlowScreen"
+        component={NewUserFlowScreen}
+        options={{
+          headerShown: true,
+          tabBarIcon: ({size}) => (
+            <Icon name="users" size={size} color="#e91e63" />
+          ),
+        }}
+      />
+    </HomeTabs.Navigator>
   );
 };
 

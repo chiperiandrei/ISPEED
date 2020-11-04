@@ -1,12 +1,12 @@
 import React from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
+import {Button} from 'react-native';
 
 import LoginScreen from '../screens/LoginScreen';
 import ForgotScreen from '../screens/ForgotScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 
 import HomeScreen from '../screens/HomeScreen';
-
-import {createStackNavigator} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
@@ -31,7 +31,14 @@ const AppNavigator = ({isLoggedIn}) => {
           component={component}
           key={name}
           options={{
-            headerShown: !['SignIn', 'SignUp', 'Forgot'].includes(name),
+            headerShown: false,
+            headerRight: () => (
+              <Button
+                onPress={() => alert('This is a button!')}
+                title="Info"
+                color="#fff"
+              />
+            ),
           }}
         />
       ))}
