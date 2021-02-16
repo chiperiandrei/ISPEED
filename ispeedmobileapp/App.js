@@ -1,8 +1,8 @@
-import * as React from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import AuthContext from './utils/authcontext';
+import { NavigationContainer } from '@react-navigation/native';
+import * as React from 'react';
 import AppNavigator from './navigation/AppNavigator';
-import {NavigationContainer} from '@react-navigation/native';
+import AuthContext from './utils/authcontext';
 
 export default function App({navigation}) {
   const [state, dispatch] = React.useReducer(

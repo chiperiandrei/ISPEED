@@ -36,4 +36,5 @@ const handleCancel = () => {
   PushNotification.cancelAllLocalNotifications();
 };
 
-export {showNotification, handleScheduleNotification, handleCancel};
+export { showNotification, handleScheduleNotification, handleCancel };
+

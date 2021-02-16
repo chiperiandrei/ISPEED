@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
-
+import React, { useState } from 'react';
 import {
   StyleSheet,
   Text,
-  View,
+
   TextInput,
-  TouchableOpacity,
+  TouchableOpacity, View
 } from 'react-native';
+
 
 const ForgotScreen = (props) => {
   const [email, setEmail] = useState('');

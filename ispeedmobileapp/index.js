@@ -11,7 +11,7 @@ import PushNotification from 'react-native-push-notification';
 
 
 const API_DEV =
-  Platform.OS === 'ios' ? 'http://localhost:5000' : 'http://192.168.0.128:5000';
+  Platform.OS === 'ios' ? 'http://localhost:5000' : 'http://192.168.0.181:5000';
 
 const API_PROD = 'https://server hostat';
 
@@ -20,7 +20,7 @@ const API = __DEV__ ? API_DEV : API_PROD;
 const SOCKET_API =
   Platform.OS === 'ios'
     ? 'ws://localhost:5000/subscription'
-    : 'ws://192.168.0.128:5000/subscription';
+    : 'ws://192.168.0.181:5000/subscription';
 
 const httpLink = new HttpLink({
   uri: API,

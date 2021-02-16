@@ -1,16 +1,15 @@
-import React, {useState} from 'react';
-
+import { gql, useMutation } from '@apollo/client';
+import React, { useState } from 'react';
 import {
-  StyleSheet,
+  Alert, StyleSheet,
   Text,
-  View,
+
   TextInput,
-  TouchableOpacity,
-  Alert,
+  TouchableOpacity, View
 } from 'react-native';
 import AuthContext from '../utils/authcontext';
 
-import {gql, useMutation} from '@apollo/client';
+
 
 const LOGIN_QUERY = gql`
   mutation login($username: String!, $password: String!) {

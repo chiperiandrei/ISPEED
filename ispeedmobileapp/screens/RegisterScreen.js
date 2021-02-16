@@ -1,17 +1,15 @@
-import React, {useState} from 'react';
-
+import { gql, useMutation } from '@apollo/client';
+import React, { useState } from 'react';
 import {
-  StyleSheet,
+  SafeAreaView, ScrollView, StyleSheet,
   Text,
-  View,
+
   TextInput,
-  TouchableOpacity,
-  ScrollView,
-  SafeAreaView,
+  TouchableOpacity, View
 } from 'react-native';
 import AuthContext from '../utils/authcontext';
 
-import {gql, useMutation} from '@apollo/client';
+
 const REGISTER_QUERY = gql`
   mutation register(
     $username: String!

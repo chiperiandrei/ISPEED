@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {Text, View} from 'react-native';
+import { gql } from '@apollo/client';
+import { useSubscription } from '@apollo/react-hooks';
+import React, { useEffect, useState } from 'react';
+import { View } from 'react-native';
 
-import {gql} from '@apollo/client';
-import {useSubscription} from '@apollo/react-hooks';
 
 const NEW_USER = gql`
   subscription newUser {

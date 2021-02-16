@@ -1,12 +1,12 @@
+import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
-import {Button} from 'react-native';
-
-import LoginScreen from '../screens/LoginScreen';
+import { Button } from 'react-native';
 import ForgotScreen from '../screens/ForgotScreen';
+import HomeScreen from '../screens/HomeScreen';
+import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 
-import HomeScreen from '../screens/HomeScreen';
+
 
 const Stack = createStackNavigator();
 

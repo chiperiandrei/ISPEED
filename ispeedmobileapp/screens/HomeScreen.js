@@ -1,18 +1,17 @@
-import React, {useEffect, useState} from 'react';
-import {View, Text, Button, Alert, Platform} from 'react-native';
-
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
+import { gql } from '@apollo/client';
+import { useSubscription } from '@apollo/react-hooks';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React, { useState } from 'react';
 import Icon from 'react-native-vector-icons/Entypo';
-
-import {gql} from '@apollo/client';
-import {useSubscription} from '@apollo/react-hooks';
 import {
   showNotification
 } from '../notifications/notification.android';
-
-import NewUserFlowScreen from '../screens/NewUserFlowScreen';
 import InternetSpeedScreen from '../screens/InternetSpeedScreen';
+import NewUserFlowScreen from '../screens/NewUserFlowScreen';
+
+
+
+
 
 const NEW_USER = gql`
   subscription newUser {
