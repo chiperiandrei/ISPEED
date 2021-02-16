@@ -1,0 +1,6 @@
+subscription newUser {
+  newUser {
+    email
+    createdAt
+  }
+}
